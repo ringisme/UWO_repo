@@ -36,9 +36,66 @@ Initialized empty Git repository in /A/B/.git/
 
 ```bash
 $ git add 新文件.txt
+
+# 也可以一次 add 多个文件
+$ git add 新文件1.txt 新文件2.txt
 ```
 
  成功的话会没有任何反馈.
+
+每次添加新文件之后, 最好在 commit 一下, 告诉 Git 这次都干了啥:
+
+```bash
+$ git commit -m "我这次加了个新文件进去"
+成功的话会显示类似于以下语句:
+[master (root-commit) cb926e7] 我这次加了个新文件进去
+ 1 file changed, 2 insertions(+) #表示一个文件变动, 两行内容插入.
+ create mode 100644 新文件.txt
+```
+
+当然也可以 add 多个文件后, 一起 commit
+
+送上去之后, 这个文件的变动就会被 Git 监控了.
+
+
+
+## 03. 货品查看
+
+把货物送上架之后, 可以没事过来看看, 哪些货物发生变化了:
+
+```bash
+$ git status
+
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   00_Git简介.md # 这个文件被修改(modified)过了, 但还没有提交
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+
+然后看看这些货物都发生什么变化了:
+
+```bash
+$ git diff
+```
+
+看完之后把货品放回去登记一下
+
+```bash
+$ git add 00_Git简介.md
+# 可见 add 这个语句有"挂号"的作用
+```
+
+然后封存:
+
+```bash
+$ git commit -m "做了一些微笑的工作"
+```
+
+
 
 
 
