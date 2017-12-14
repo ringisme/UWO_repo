@@ -93,9 +93,69 @@ $ git add 00_Git简介.md
 
 ```bash
 $ git commit -m "做了一些微笑的工作"
+
+[master 19f6643] 做了一些微小的工作
+ 1 file changed, 57 insertions(+)
 ```
 
+最后看下地板都是收拾干净没有:
+
+```bash
+$ git status
+On branch master
+nothing to commit, working tree clean #真干净啊!
+```
+
+- 任何时候用`git status`看看仓库有无变动
+- 用`git diff`查看变动内容
 
 
 
+## 04. 货品重装
 
+之前每次倒腾完货物, 都会在小本本上记一笔, 那么怎么查看记录的这些内容呢:
+
+```bash
+$ git log
+
+# 也可以用精简模式查看:
+$ git log --pretty=oneline
+
+19f6643da18e1d11dcc65ec5cbc6489605115169 (HEAD -> master) 做了一些微小的工作
+# 上行中的" HEAD" 表示当前版本.
+aeb4689802e549e3af7f34d1a796ff9c531624d6 添加了第一个简介文件上架
+```
+
+显示的顺序是从最近到最远. 
+
+前面那一堆字符串被称为`commit id`, 就是 git 中改动的身份标识.
+
+- `HEAD`表示当前版本.
+- `HEAD^`表示上个版本, `HEAD^^`就表示上上个版本
+- `HEAD~100`就表示之前的第100个版本.
+
+
+
+当需要进行时间回溯的时候, 用这个语句:
+
+```bash
+$ git reset --hard HEAD^ # 表示回溯到上个版本.
+```
+
+如果穿越回去了, 忽然后悔了, 又想穿越回来...
+
+先把窗口往上拉, 找到最后一次版本的`commit id`, 然后同样方法
+
+```bash
+$ git reset -- hard 序列号
+```
+
+(需要注意的是, 并不需要输入完整的`commit id`, 只要前几位差不多就行, git 会自己查找后面的.)
+
+当然, 如果关闭了 shell 窗口, 忘了回溯前版本的`commit id`的话, 可以"查总账":
+
+```bash
+$ git reflog
+```
+
+ 就可以看到开天辟地以来的所有版本号了.
